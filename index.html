@@ -135,7 +135,9 @@ body::before {
   position: relative; z-index: 1; cursor: pointer;
 }
 .tool-link:hover { gap: 0.6rem; }
+.tool-link:active { transform: scale(0.96); opacity: 0.85; }
 .tool-link svg { width: 13px; height: 13px; flex-shrink: 0; }
+.tool-link::after { content: ""; position: absolute; inset: -10px; }
 
 .no-results { grid-column: 1 / -1; text-align: center; padding: 4rem 1rem; }
 .no-results-icon { font-size: 3rem; margin-bottom: 1rem; opacity: 0.4; }
@@ -182,6 +184,11 @@ body::before {
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
+
+/* BACK-TO-TOP */
+.back-to-top { position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 200; width: 44px; height: 44px; border-radius: 50%; background: oklch(0.68 0.16 55); color: oklch(0.14 0.01 60); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; box-shadow: 0 4px 16px oklch(0 0 0 / 0.35); opacity: 0; visibility: hidden; transform: translateY(10px); transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); cursor: pointer; border: none; }
+.back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+.back-to-top:active { transform: scale(0.92); }
 </style>
 </head>
 <body>
@@ -297,6 +304,8 @@ body::before {
   </div>
   <div class="footer-bottom">&copy; 2025 ToolKit · 自媒体AI工具导航</div>
 </footer>
+
+<button class="back-to-top" id="backToTop" aria-label="返回顶部">↑</button>
 
 <script>
 const tools = [
@@ -450,6 +459,8 @@ let activeCategory = "all";
 let searchQuery = "";
 let activeFilter = "";
 
+function debounce(fn, ms) { let t; return function(...args) { clearTimeout(t); t = setTimeout(() => fn.apply(this, args), ms); }; }
+
 function renderTools() {
   const grid = document.getElementById("toolsGrid");
   const countEl = document.getElementById("toolCount");
@@ -476,12 +487,12 @@ function renderTools() {
       <div class="tool-desc">${t.desc}</div>
       <div class="tool-scene">🎯 ${t.scene}</div>
       <div class="tool-tags">${tagsHTML}</div>
-      <a href="${t.url}" target="_blank" rel="noopener" class="tool-link">访问工具<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <a href="${t.url}" rel="noopener" class="tool-link" data-url="${t.url}">访问工具<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>`;
   }).join("");
 }
 
-document.getElementById("searchInput").addEventListener("input", function(e) { searchQuery = e.target.value; renderTools(); });
+document.getElementById("searchInput").addEventListener("input", debounce(function(e) { searchQuery = e.target.value; renderTools(); }, 250));
 document.getElementById("categories").addEventListener("click", function(e) {
   if (e.target.classList.contains("cat-btn")) {
     document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
@@ -514,10 +525,39 @@ document.querySelectorAll("[data-nav-cat]").forEach(link => {
 
 renderTools();
 
+// 统一处理工具链接点击：用临时a标签绕过移动端弹窗拦截
 document.getElementById("toolsGrid").addEventListener("click", function(e) {
+  e.preventDefault();
   const link = e.target.closest(".tool-link");
-  if (link && link.href) window.open(link.href, "_blank", "noopener");
+  if (!link) return;
+  const url = link.dataset.url || link.getAttribute("href");
+  if (!url) return;
+  const a = document.createElement("a");
+  a.href = url;
+  a.target = "_blank";
+  a.rel = "noopener";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
 });
+
+// 返回顶部
+(function() {
+  const btn = document.getElementById("backToTop");
+  let ticking = false;
+  window.addEventListener("scroll", function() {
+    if (!ticking) {
+      requestAnimationFrame(function() {
+        btn.classList.toggle("visible", window.scrollY > 400);
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+  btn.addEventListener("click", function() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+})();
 </script>
 </body>
 </html>
