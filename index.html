@@ -3,13 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ToolKit - AI工具导航 · 发现好用的人工智能工具</title>
-<meta name="description" content="ToolKit 收录国内外优质AI工具，覆盖办公效率、设计创意、内容创作、学习辅助、开发工具等场景，帮你高效发现最适合的AI助手。">
+<title>ToolKit - 自媒体AI工具导航 · 创作效率翻倍</title>
+<meta name="description" content="ToolKit 专为自媒体人精选AI工具，覆盖文案创作、图片设计、视频制作、数据分析等场景。只收录真正好用的，附免费平替方案。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* === RESET === */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
 body {
@@ -23,439 +22,160 @@ body {
 a { color: inherit; text-decoration: none; }
 button { border: none; background: none; cursor: pointer; font: inherit; color: inherit; }
 :focus-visible { outline: 2px solid oklch(0.72 0.15 55); outline-offset: 2px; border-radius: 4px; }
-
-/* === CUSTOM SCROLLBAR === */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: oklch(0.35 0.02 60); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: oklch(0.45 0.02 60); }
-
-/* === NOISE TEXTURE OVERLAY === */
 body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.015;
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: 0.015;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size: 200px 200px;
 }
 
-/* === TOP NAV === */
+/* NAV */
 .top-nav {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  padding: 0.75rem clamp(1rem, 4vw, 4rem);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  position: sticky; top: 0; z-index: 100; padding: 0.75rem clamp(1rem, 4vw, 4rem);
+  display: flex; align-items: center; justify-content: space-between;
   border-bottom: 1px solid oklch(0.25 0.01 60 / 0.6);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%);
   background: oklch(0.14 0.01 60 / 0.85);
 }
-.nav-brand {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: clamp(1.1rem, 2vw, 1.35rem);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-}
-.nav-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: oklch(0.72 0.18 55);
-  box-shadow: 0 0 12px oklch(0.72 0.18 55 / 0.5);
-  animation: pulse-dot 2s ease-in-out infinite;
-}
-@keyframes pulse-dot {
-  0%, 100% { box-shadow: 0 0 8px oklch(0.72 0.18 55 / 0.3); }
-  50% { box-shadow: 0 0 18px oklch(0.72 0.18 55 / 0.6); }
-}
+.nav-brand { display: flex; align-items: center; gap: 0.5rem; font-size: clamp(1.1rem, 2vw, 1.35rem); font-weight: 700; letter-spacing: -0.02em; }
+.nav-dot { width: 10px; height: 10px; border-radius: 50%; background: oklch(0.72 0.18 55); box-shadow: 0 0 12px oklch(0.72 0.18 55 / 0.5); animation: pulse-dot 2s ease-in-out infinite; }
+@keyframes pulse-dot { 0%,100% { box-shadow: 0 0 8px oklch(0.72 0.18 55 / 0.3); } 50% { box-shadow: 0 0 18px oklch(0.72 0.18 55 / 0.6); } }
 .nav-links { display: flex; gap: 1.5rem; align-items: center; }
-.nav-links a {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: oklch(0.7 0.01 60);
-  transition: color 0.2s;
-}
+.nav-links a { font-size: 0.9rem; font-weight: 500; color: oklch(0.7 0.01 60); transition: color 0.2s; }
 .nav-links a:hover { color: oklch(0.92 0.02 60); }
-.btn-submit {
-  padding: 0.45rem 1.1rem;
-  border-radius: 100px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  background: oklch(0.68 0.16 55);
-  color: oklch(0.14 0.01 60);
-  transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-.btn-submit:hover {
-  background: oklch(0.75 0.18 55);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 20px oklch(0.68 0.16 55 / 0.35);
-}
+.btn-submit { padding: 0.45rem 1.1rem; border-radius: 100px; font-size: 0.85rem; font-weight: 600; background: oklch(0.68 0.16 55); color: oklch(0.14 0.01 60); transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+.btn-submit:hover { background: oklch(0.75 0.18 55); transform: translateY(-1px); box-shadow: 0 4px 20px oklch(0.68 0.16 55 / 0.35); }
 .btn-submit:active { transform: scale(0.97); }
 
-/* === HERO === */
-.hero {
-  padding: clamp(3rem, 8vw, 6rem) clamp(1rem, 4vw, 4rem);
-  text-align: center;
-}
-.hero-label {
-  display: inline-block;
-  padding: 0.3rem 1rem;
-  border-radius: 100px;
-  font-size: 0.8rem;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: oklch(0.8 0.08 55);
-  background: oklch(0.72 0.18 55 / 0.1);
-  border: 1px solid oklch(0.72 0.18 55 / 0.25);
-  margin-bottom: 1.5rem;
-}
-.hero h1 {
-  font-size: clamp(2.2rem, 6vw, 4rem);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 1.15;
-  margin-bottom: 1rem;
-}
-.hero h1 span {
-  background: linear-gradient(135deg, oklch(0.78 0.22 55), oklch(0.85 0.12 70));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-.hero p {
-  font-size: clamp(1rem, 2vw, 1.2rem);
-  color: oklch(0.65 0.01 60);
-  max-width: 540px;
-  margin: 0 auto 2.5rem;
-}
+/* HERO */
+.hero { padding: clamp(2.5rem, 6vw, 4.5rem) clamp(1rem, 4vw, 4rem); text-align: center; }
+.hero-label { display: inline-block; padding: 0.3rem 1rem; border-radius: 100px; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.8 0.08 55); background: oklch(0.72 0.18 55 / 0.1); border: 1px solid oklch(0.72 0.18 55 / 0.25); margin-bottom: 1.2rem; }
+.hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 0.75rem; }
+.hero h1 span { background: linear-gradient(135deg, oklch(0.78 0.22 55), oklch(0.85 0.12 70)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.hero p { font-size: clamp(0.95rem, 1.8vw, 1.1rem); color: oklch(0.65 0.01 60); max-width: 520px; margin: 0 auto 2rem; }
 
-/* === SEARCH === */
-.search-wrap {
-  position: relative;
-  max-width: 560px;
-  margin: 0 auto;
-}
-.search-wrap input {
-  width: 100%;
-  padding: 1rem 3.5rem 1rem 1.5rem;
-  border-radius: 100px;
-  border: 1.5px solid oklch(0.28 0.01 60);
-  background: oklch(0.18 0.01 60);
-  color: oklch(0.92 0.01 60);
-  font-size: 1rem;
-  font-family: inherit;
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
+/* SEARCH */
+.search-wrap { position: relative; max-width: 500px; margin: 0 auto; }
+.search-wrap input { width: 100%; padding: 0.9rem 3.2rem 0.9rem 1.3rem; border-radius: 100px; border: 1.5px solid oklch(0.28 0.01 60); background: oklch(0.18 0.01 60); color: oklch(0.92 0.01 60); font-size: 0.95rem; font-family: inherit; transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
 .search-wrap input::placeholder { color: oklch(0.45 0.01 60); }
-.search-wrap input:focus {
-  outline: none;
-  border-color: oklch(0.6 0.14 55);
-  background: oklch(0.2 0.01 60);
-  box-shadow: 0 0 0 4px oklch(0.68 0.16 55 / 0.12);
-}
-.search-icon {
-  position: absolute;
-  right: 1.2rem;
-  top: 50%;
-  transform: translateY(-50%);
-  color: oklch(0.5 0.01 60);
-  pointer-events: none;
-  transition: color 0.3s;
-}
+.search-wrap input:focus { outline: none; border-color: oklch(0.6 0.14 55); background: oklch(0.2 0.01 60); box-shadow: 0 0 0 4px oklch(0.68 0.16 55 / 0.12); }
+.search-icon { position: absolute; right: 1.1rem; top: 50%; transform: translateY(-50%); color: oklch(0.5 0.01 60); pointer-events: none; transition: color 0.3s; }
 .search-wrap input:focus ~ .search-icon { color: oklch(0.68 0.16 55); }
 
-/* === CATEGORY FILTERS === */
-.categories {
-  padding: 0 clamp(1rem, 4vw, 4rem) 1.5rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  justify-content: center;
+/* FEATURE TAGS */
+.feature-tags { padding: 0 clamp(1rem, 4vw, 4rem) 1rem; display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; }
+.ftag { padding: 0.35rem 0.9rem; border-radius: 100px; font-size: 0.78rem; font-weight: 500; border: 1px solid oklch(0.24 0.01 60); color: oklch(0.55 0.01 60); transition: all 0.25s; cursor: pointer; }
+.ftag:hover { border-color: oklch(0.4 0.02 60); color: oklch(0.82 0.02 60); }
+.ftag.active { border-color: oklch(0.6 0.14 55 / 0.5); background: oklch(0.68 0.16 55 / 0.12); color: oklch(0.82 0.12 55); }
+.ftag.free-tag.active { border-color: oklch(0.5 0.14 160 / 0.5); background: oklch(0.5 0.14 160 / 0.12); color: oklch(0.75 0.12 160); }
+.ftag.pingti-tag.active { border-color: oklch(0.55 0.12 280 / 0.5); background: oklch(0.55 0.12 280 / 0.12); color: oklch(0.75 0.1 280); }
+
+/* WORKFLOW SECTION */
+.workflow-section { padding: 0 clamp(1rem, 4vw, 4rem) 2rem; }
+.workflow-section h2 { font-size: clamp(1.1rem, 2vw, 1.35rem); font-weight: 600; letter-spacing: -0.02em; margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.5rem; }
+.workflow-section h2 .dot { width: 8px; height: 8px; border-radius: 50%; background: oklch(0.72 0.18 55); flex-shrink: 0; }
+.workflow-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.75rem; }
+.workflow-card {
+  padding: 1.3rem; border-radius: 14px; border: 1px solid oklch(0.22 0.01 60); background: oklch(0.16 0.01 60);
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); position: relative; overflow: hidden;
 }
-.cat-btn {
-  padding: 0.5rem 1.2rem;
-  border-radius: 100px;
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: oklch(0.6 0.01 60);
-  border: 1px solid oklch(0.28 0.01 60);
-  transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
+.workflow-card:hover { border-color: oklch(0.35 0.03 60); transform: translateY(-1px); box-shadow: 0 4px 20px oklch(0 0 0 / 0.25); }
+.workflow-icon { font-size: 1.6rem; margin-bottom: 0.6rem; }
+.workflow-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.4rem; }
+.workflow-card p { font-size: 0.82rem; color: oklch(0.52 0.01 60); line-height: 1.5; margin-bottom: 0.8rem; }
+.workflow-tools { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.workflow-tool { padding: 0.2rem 0.6rem; border-radius: 6px; font-size: 0.73rem; font-weight: 500; background: oklch(0.22 0.01 60); color: oklch(0.6 0.01 60); }
+
+/* CATEGORIES */
+.categories { padding: 0 clamp(1rem, 4vw, 4rem) 1rem; display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; }
+.cat-btn { padding: 0.45rem 1.1rem; border-radius: 100px; font-size: 0.84rem; font-weight: 500; color: oklch(0.6 0.01 60); border: 1px solid oklch(0.28 0.01 60); transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
 .cat-btn:hover { color: oklch(0.85 0.01 60); border-color: oklch(0.4 0.02 60); }
-.cat-btn.active {
-  background: oklch(0.68 0.16 55 / 0.15);
-  border-color: oklch(0.68 0.16 55 / 0.5);
-  color: oklch(0.82 0.12 55);
-}
+.cat-btn.active { background: oklch(0.68 0.16 55 / 0.15); border-color: oklch(0.68 0.16 55 / 0.5); color: oklch(0.82 0.12 55); }
 
-/* === TOOLS SECTION === */
-.tools-section {
-  padding: 1rem clamp(1rem, 4vw, 4rem) 3rem;
-}
-.section-header {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  margin-bottom: 2rem;
-}
-.section-header h2 {
-  font-size: clamp(1.3rem, 2.5vw, 1.6rem);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-}
-.section-header h2 span {
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: oklch(0.72 0.18 55);
-  margin-right: 0.6rem;
-  vertical-align: middle;
-  transform: translateY(-2px);
-}
-.section-count {
-  font-size: 0.85rem;
-  color: oklch(0.48 0.01 60);
-}
+/* TOOLS */
+.tools-section { padding: 1rem clamp(1rem, 4vw, 4rem) 3rem; }
+.section-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 1.5rem; }
+.section-header h2 { font-size: clamp(1.2rem, 2.2vw, 1.4rem); font-weight: 600; letter-spacing: -0.02em; }
+.section-header h2 .dot { width: 8px; height: 8px; border-radius: 50%; background: oklch(0.72 0.18 55); margin-right: 0.5rem; vertical-align: middle; display: inline-block; transform: translateY(-1px); }
+.section-count { font-size: 0.82rem; color: oklch(0.48 0.01 60); }
 
-/* Tool grid — magazine style, varied widths */
-.tools-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1rem;
-}
-@media (min-width: 900px) {
-  .tools-grid {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-  .tool-card.featured { grid-column: span 2; }
-}
-@media (min-width: 1200px) {
-  .tools-grid {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-  }
-  .tool-card.featured { grid-column: span 2; }
-}
+.tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 0.85rem; }
+@media (min-width: 900px) { .tools-grid { grid-template-columns: 1fr 1fr 1fr; } .tool-card.featured { grid-column: span 2; } }
+@media (min-width: 1200px) { .tools-grid { grid-template-columns: 1fr 1fr 1fr 1fr; } .tool-card.featured { grid-column: span 2; } }
 
 .tool-card {
-  position: relative;
-  padding: 1.5rem;
-  border-radius: 16px;
-  border: 1px solid oklch(0.24 0.01 60);
-  background: oklch(0.17 0.01 60);
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  overflow: hidden;
+  position: relative; padding: 1.3rem; border-radius: 14px; border: 1px solid oklch(0.24 0.01 60);
+  background: oklch(0.17 0.01 60); transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); overflow: hidden;
 }
 .tool-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 16px;
-  opacity: 0;
+  content: ""; position: absolute; inset: 0; border-radius: 14px; opacity: 0;
   background: radial-gradient(ellipse at top left, oklch(0.68 0.16 55 / 0.06), transparent 60%);
   transition: opacity 0.3s;
 }
-.tool-card:hover {
-  border-color: oklch(0.35 0.03 60);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px oklch(0 0 0 / 0.3);
-}
+.tool-card:hover { border-color: oklch(0.35 0.03 60); transform: translateY(-2px); box-shadow: 0 8px 30px oklch(0 0 0 / 0.3); }
 .tool-card:hover::before { opacity: 1; }
-.tool-card-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  margin-bottom: 0.75rem;
-}
-.tool-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.3rem;
-  font-weight: 700;
-  flex-shrink: 0;
-}
-.tool-name {
-  font-size: 1.1rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  margin-bottom: 0.35rem;
-}
-.tool-desc {
-  font-size: 0.85rem;
-  color: oklch(0.55 0.01 60);
-  line-height: 1.5;
-  margin-bottom: 1rem;
-}
-.tool-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-bottom: 1rem;
-}
-.tag {
-  padding: 0.2rem 0.65rem;
-  border-radius: 100px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  background: oklch(0.22 0.01 60);
-  color: oklch(0.6 0.01 60);
-}
-.tag.free { background: oklch(0.5 0.14 160 / 0.15); color: oklch(0.75 0.12 160); }
+.tool-card-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 0.6rem; }
+.tool-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; font-weight: 700; flex-shrink: 0; }
+.tool-name { font-size: 1.05rem; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 0.3rem; }
+.tool-desc { font-size: 0.82rem; color: oklch(0.52 0.01 60); line-height: 1.5; margin-bottom: 0.8rem; }
+.tool-scene { font-size: 0.76rem; color: oklch(0.6 0.06 55); margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.3rem; }
+.tool-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.8rem; }
+.tag { padding: 0.18rem 0.55rem; border-radius: 100px; font-size: 0.72rem; font-weight: 500; background: oklch(0.22 0.01 60); color: oklch(0.6 0.01 60); }
+.tag.free { background: oklch(0.5 0.14 160 / 0.12); color: oklch(0.72 0.1 160); }
+.tag.freemium { background: oklch(0.55 0.08 80 / 0.12); color: oklch(0.72 0.08 80); }
 .tag.paid { background: oklch(0.68 0.16 55 / 0.1); color: oklch(0.78 0.12 55); }
-.tag.cn { background: oklch(0.55 0.12 280 / 0.12); color: oklch(0.75 0.1 280); }
+.tag.cn { background: oklch(0.55 0.12 280 / 0.1); color: oklch(0.72 0.08 280); }
+.tag.pingti { background: oklch(0.45 0.1 200 / 0.12); color: oklch(0.7 0.1 200); }
 
 .tool-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: oklch(0.78 0.12 55);
-  transition: gap 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  position: relative;
-  z-index: 1;
-  cursor: pointer;
+  display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; font-weight: 500;
+  color: oklch(0.78 0.12 55); transition: gap 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative; z-index: 1; cursor: pointer;
 }
-.tool-link:hover { gap: 0.65rem; }
-.tool-link svg { width: 14px; height: 14px; flex-shrink: 0; }
+.tool-link:hover { gap: 0.6rem; }
+.tool-link svg { width: 13px; height: 13px; flex-shrink: 0; }
 
-/* NO RESULTS */
-.no-results {
-  grid-column: 1 / -1;
-  text-align: center;
-  padding: 4rem 1rem;
-}
+.no-results { grid-column: 1 / -1; text-align: center; padding: 4rem 1rem; }
 .no-results-icon { font-size: 3rem; margin-bottom: 1rem; opacity: 0.4; }
 .no-results p { color: oklch(0.5 0.01 60); font-size: 1rem; }
 
-/* === SUBMIT CTA === */
-.submit-cta {
-  margin: 0 clamp(1rem, 4vw, 4rem) 4rem;
-  padding: 3rem 2rem;
-  border-radius: 24px;
-  background: oklch(0.17 0.01 60);
-  border: 1px solid oklch(0.24 0.01 60);
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-.submit-cta::after {
-  content: "";
-  position: absolute;
-  top: -50%;
-  right: -20%;
-  width: 400px;
-  height: 400px;
-  border-radius: 50%;
-  background: radial-gradient(circle, oklch(0.68 0.16 55 / 0.05), transparent 70%);
-  pointer-events: none;
-}
-.submit-cta h3 {
-  font-size: clamp(1.2rem, 2vw, 1.5rem);
-  font-weight: 600;
-  margin-bottom: 0.75rem;
-  position: relative;
-  z-index: 1;
-}
-.submit-cta p {
-  color: oklch(0.55 0.01 60);
-  margin-bottom: 1.5rem;
-  font-size: 0.95rem;
-  position: relative;
-  z-index: 1;
-}
-.btn-submit-lg {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 2rem;
-  border-radius: 100px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  background: oklch(0.68 0.16 55);
-  color: oklch(0.14 0.01 60);
-  transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  position: relative;
-  z-index: 1;
-}
-.btn-submit-lg:hover {
-  background: oklch(0.75 0.18 55);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 24px oklch(0.68 0.16 55 / 0.4);
-}
+/* SUBMIT */
+.submit-cta { margin: 0 clamp(1rem, 4vw, 4rem) 4rem; padding: 2.5rem 2rem; border-radius: 20px; background: oklch(0.17 0.01 60); border: 1px solid oklch(0.24 0.01 60); text-align: center; position: relative; overflow: hidden; }
+.submit-cta::after { content: ""; position: absolute; top: -40%; right: -15%; width: 350px; height: 350px; border-radius: 50%; background: radial-gradient(circle, oklch(0.68 0.16 55 / 0.05), transparent 70%); pointer-events: none; }
+.submit-cta h3 { font-size: clamp(1.1rem, 2vw, 1.35rem); font-weight: 600; margin-bottom: 0.6rem; position: relative; z-index: 1; }
+.submit-cta p { color: oklch(0.55 0.01 60); margin-bottom: 1.3rem; font-size: 0.9rem; position: relative; z-index: 1; }
+.btn-submit-lg { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.7rem 1.8rem; border-radius: 100px; font-size: 0.9rem; font-weight: 600; background: oklch(0.68 0.16 55); color: oklch(0.14 0.01 60); transition: all 0.25s; position: relative; z-index: 1; }
+.btn-submit-lg:hover { background: oklch(0.75 0.18 55); transform: translateY(-2px); box-shadow: 0 6px 24px oklch(0.68 0.16 55 / 0.4); }
 .btn-submit-lg:active { transform: scale(0.97); }
 
-/* === FOOTER === */
-.site-footer {
-  padding: 3rem clamp(1rem, 4vw, 4rem) 2rem;
-  border-top: 1px solid oklch(0.22 0.01 60);
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  justify-content: space-between;
-  align-items: flex-start;
-}
+/* FOOTER */
+.site-footer { padding: 2.5rem clamp(1rem, 4vw, 4rem) 1.5rem; border-top: 1px solid oklch(0.22 0.01 60); display: flex; flex-wrap: wrap; gap: 2rem; justify-content: space-between; }
 .footer-brand { max-width: 280px; }
-.footer-brand h4 { font-size: 1.1rem; margin-bottom: 0.5rem; font-weight: 600; }
-.footer-brand p { font-size: 0.82rem; color: oklch(0.5 0.01 60); line-height: 1.6; }
-.footer-links { display: flex; gap: 3rem; flex-wrap: wrap; }
-.footer-col h5 {
-  font-size: 0.8rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: oklch(0.55 0.01 60);
-  margin-bottom: 0.75rem;
-}
-.footer-col a {
-  display: block;
-  font-size: 0.85rem;
-  color: oklch(0.6 0.01 60);
-  padding: 0.25rem 0;
-  transition: color 0.2s;
-}
+.footer-brand h4 { font-size: 1.05rem; margin-bottom: 0.4rem; font-weight: 600; }
+.footer-brand p { font-size: 0.8rem; color: oklch(0.5 0.01 60); line-height: 1.6; }
+.footer-links { display: flex; gap: 2.5rem; flex-wrap: wrap; }
+.footer-col h5 { font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: oklch(0.55 0.01 60); margin-bottom: 0.6rem; }
+.footer-col a { display: block; font-size: 0.82rem; color: oklch(0.6 0.01 60); padding: 0.2rem 0; transition: color 0.2s; }
 .footer-col a:hover { color: oklch(0.85 0.01 60); }
-.footer-bottom {
-  width: 100%;
-  margin-top: 2rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid oklch(0.22 0.01 60);
-  font-size: 0.8rem;
-  color: oklch(0.42 0.01 60);
-}
+.footer-bottom { width: 100%; margin-top: 1.5rem; padding-top: 1.2rem; border-top: 1px solid oklch(0.22 0.01 60); font-size: 0.78rem; color: oklch(0.42 0.01 60); }
 
-/* === RESPONSIVE === */
 @media (max-width: 768px) {
   .nav-links a:not(.btn-submit) { display: none; }
   .tools-grid { grid-template-columns: 1fr; }
+  .workflow-cards { grid-template-columns: 1fr; }
   .section-header { flex-direction: column; gap: 0.5rem; }
   .site-footer { flex-direction: column; gap: 2rem; }
   .footer-links { gap: 2rem; }
 }
 
-/* === ANIMATIONS === */
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(16px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.tool-card { animation: fadeInUp 0.5s ease-out both; }
-.tool-card:nth-child(1) { animation-delay: 0.05s; }
-.tool-card:nth-child(2) { animation-delay: 0.1s; }
-.tool-card:nth-child(3) { animation-delay: 0.15s; }
-.tool-card:nth-child(4) { animation-delay: 0.2s; }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+.tool-card, .workflow-card { animation: fadeInUp 0.5s ease-out both; }
+.tool-card:nth-child(1), .workflow-card:nth-child(1) { animation-delay: 0.05s; }
+.tool-card:nth-child(2), .workflow-card:nth-child(2) { animation-delay: 0.1s; }
+.tool-card:nth-child(3), .workflow-card:nth-child(3) { animation-delay: 0.15s; }
+.tool-card:nth-child(4), .workflow-card:nth-child(4) { animation-delay: 0.2s; }
 .tool-card:nth-child(5) { animation-delay: 0.25s; }
 .tool-card:nth-child(6) { animation-delay: 0.3s; }
 
@@ -466,427 +186,302 @@ body::before {
 </head>
 <body>
 
-<!-- TOP NAV -->
 <nav class="top-nav">
-  <div class="nav-brand">
-    <span class="nav-dot"></span>ToolKit
-  </div>
+  <div class="nav-brand"><span class="nav-dot"></span>ToolKit</div>
   <div class="nav-links">
+    <a href="#workflow">场景方案</a>
     <a href="#tools">全部工具</a>
-    <a href="#submit">提交工具</a>
-    <a href="#tools" class="btn-submit">提交工具</a>
+    <a href="#submit" class="btn-submit">提交工具</a>
   </div>
 </nav>
 
-<!-- HERO -->
 <header class="hero">
-  <div class="hero-label">2025 · AI 工具导航</div>
-  <h1>发现<span>好用</span>的人工智能工具</h1>
-  <p>精选国内外优质 AI 工具，办公、设计、创作、学习、开发一站式导航</p>
+  <div class="hero-label">自媒体 · AI 工具箱</div>
+  <h1>让创作<span>快人一步</span></h1>
+  <p>专为自媒体人精选的AI工具导航。文案、图片、视频、数据，一站搞定。附免费平替方案。</p>
   <div class="search-wrap">
-    <input type="text" id="searchInput" placeholder="输入工具名称或功能关键词..." autocomplete="off">
-    <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+    <input type="text" id="searchInput" placeholder="搜工具名、用途或场景..." autocomplete="off">
+    <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
   </div>
 </header>
+
+<!-- QUICK FILTER TAGS -->
+<div class="feature-tags">
+  <button class="ftag free-tag" data-filter="free">🆓 完全免费</button>
+  <button class="ftag pingti-tag" data-filter="pingti">🔄 国产平替</button>
+</div>
+
+<!-- WORKFLOW SCENES -->
+<section class="workflow-section" id="workflow">
+  <h2><span class="dot"></span>场景化工作流</h2>
+  <div class="workflow-cards">
+    <div class="workflow-card">
+      <div class="workflow-icon">📕</div>
+      <h3>10分钟出小红书爆款封面</h3>
+      <p>从文案生成到封面设计，3个工具串联搞定一条笔记</p>
+      <div class="workflow-tools">
+        <span class="workflow-tool">GPT / 豆包 → 文案</span>
+        <span class="workflow-tool">Canva AI → 封面</span>
+        <span class="workflow-tool">稿定AI → 精修</span>
+      </div>
+    </div>
+    <div class="workflow-card">
+      <div class="workflow-icon">🎬</div>
+      <h3>AI生成短视频全流程</h3>
+      <p>脚本→配音→字幕→剪辑，一个人就是一支团队</p>
+      <div class="workflow-tools">
+        <span class="workflow-tool">GPT / 通义 → 脚本</span>
+        <span class="workflow-tool">剪映AI → 剪辑</span>
+        <span class="workflow-tool">Suno → BGM</span>
+      </div>
+    </div>
+    <div class="workflow-card">
+      <div class="workflow-icon">✍️</div>
+      <h3>公众号日更不费脑</h3>
+      <p>热点追踪→AI写作→排版发布，每天1小时搞定</p>
+      <div class="workflow-tools">
+        <span class="workflow-tool">秘塔搜索 → 选题</span>
+        <span class="workflow-tool">Claude → 写作</span>
+        <span class="workflow-tool">Notion AI → 排版</span>
+      </div>
+    </div>
+    <div class="workflow-card">
+      <div class="workflow-icon">📊</div>
+      <h3>数据分析可视化</h3>
+      <p>把枯燥数据变成爆款图表，提升内容专业度</p>
+      <div class="workflow-tools">
+        <span class="workflow-tool">通义千问 → 分析</span>
+        <span class="workflow-tool">Gamma → 图表</span>
+        <span class="workflow-tool">Canva → 美化</span>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- CATEGORIES -->
 <div class="categories" id="categories">
   <button class="cat-btn active" data-cat="all">全部</button>
-  <button class="cat-btn" data-cat="办公效率">办公效率</button>
-  <button class="cat-btn" data-cat="设计创意">设计创意</button>
-  <button class="cat-btn" data-cat="内容创作">内容创作</button>
-  <button class="cat-btn" data-cat="学习辅助">学习辅助</button>
-  <button class="cat-btn" data-cat="开发工具">开发工具</button>
+  <button class="cat-btn" data-cat="文案创作">文案创作</button>
+  <button class="cat-btn" data-cat="图片设计">图片设计</button>
+  <button class="cat-btn" data-cat="视频制作">视频制作</button>
+  <button class="cat-btn" data-cat="数据分析">数据分析</button>
+  <button class="cat-btn" data-cat="效率工具">效率工具</button>
 </div>
 
 <!-- TOOLS -->
 <section class="tools-section" id="tools">
   <div class="section-header">
-    <h2><span></span>精选工具</h2>
+    <h2><span class="dot"></span>自媒体AI工具库</h2>
     <span class="section-count" id="toolCount"></span>
   </div>
   <div class="tools-grid" id="toolsGrid"></div>
 </section>
 
-<!-- SUBMIT CTA -->
 <section class="submit-cta" id="submit">
-  <h3>你的AI工具也想被收录？</h3>
-  <p>ToolKit 面向 AI 工具开发者开放免费收录，优质工具还有机会获得首页推荐。</p>
+  <h3>有好用的自媒体AI工具推荐？</h3>
+  <p>ToolKit 面向AI工具开发者开放收录，优质工具免费获首页推荐。</p>
   <a href="mailto:submit@toolkit.cn" class="btn-submit-lg">
-    提交你的工具
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    提交工具 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
   </a>
 </section>
 
-<!-- FOOTER -->
 <footer class="site-footer">
   <div class="footer-brand">
     <h4>ToolKit</h4>
-    <p>AI工具导航平台，帮助每个人高效发现和使用人工智能工具。持续收录、每日更新。</p>
+    <p>自媒体人的AI工具外挂。精选、场景化、附带免费平替方案。</p>
   </div>
   <div class="footer-links">
-    <div class="footer-col">
-      <h5>导航</h5>
-      <a href="#tools">全部工具</a>
-      <a href="#submit">提交工具</a>
-    </div>
-    <div class="footer-col">
-      <h5>分类</h5>
-      <a href="#" data-nav-cat="办公效率">办公效率</a>
-      <a href="#" data-nav-cat="设计创意">设计创意</a>
-      <a href="#" data-nav-cat="内容创作">内容创作</a>
-    </div>
-    <div class="footer-col">
-      <h5>关于</h5>
-      <a href="#">关于我们</a>
-      <a href="#">隐私政策</a>
-    </div>
+    <div class="footer-col"><h5>导航</h5><a href="#workflow">场景方案</a><a href="#tools">全部工具</a></div>
+    <div class="footer-col"><h5>分类</h5><a href="#" data-nav-cat="文案创作">文案</a><a href="#" data-nav-cat="图片设计">设计</a><a href="#" data-nav-cat="视频制作">视频</a></div>
+    <div class="footer-col"><h5>关于</h5><a href="#">关于我们</a><a href="#">隐私政策</a></div>
   </div>
-  <div class="footer-bottom">
-    &copy; 2025 ToolKit · AI Tool Navigation
-  </div>
+  <div class="footer-bottom">&copy; 2025 ToolKit · 自媒体AI工具导航</div>
 </footer>
 
 <script>
-// === TOOL DATA ===
 const tools = [
   {
-    id: 1,
-    name: "ChatGPT",
-    desc: "OpenAI 旗下的多模态对话AI，支持文本生成、代码编写、图像理解。全球用户最多的AI助手。",
-    category: "内容创作",
-    tags: ["免费", "付费"],
-    tagTypes: ["free", "paid"],
-    icon: "C",
-    iconBg: "#10a37f",
-    url: "https://chat.openai.com",
-    featured: true
+    id: 1, name: "ChatGPT", desc: "全能AI助手，自媒体人用它写脚本、起标题、做选题策划。多模态支持图片和文件上传分析。",
+    category: "文案创作", scene: "通用写作 / 脚本生成 / 内容策划",
+    tags: ["部分免费", "付费"], tagTypes: ["freemium", "paid"],
+    icon: "C", iconBg: "#10a37f", url: "https://chat.openai.com", featured: true
   },
   {
-    id: 2,
-    name: "Midjourney",
-    desc: "最强大的AI图像生成工具之一，通过自然语言描述即可生成高质量艺术作品和设计素材。",
-    category: "设计创意",
-    tags: ["付费"],
-    tagTypes: ["paid"],
-    icon: "M",
-    iconBg: "#3b3b98",
-    url: "https://www.midjourney.com",
-    featured: true
+    id: 2, name: "Claude", desc: "长文写作王者，200K上下文。写公众号长文、深度分析、行业报告一把好手，比GPT更懂"人话"。",
+    category: "文案创作", scene: "长文写作 / 深度分析",
+    tags: ["部分免费", "付费"], tagTypes: ["freemium", "paid"],
+    icon: "C", iconBg: "#d97757", url: "https://claude.ai", featured: true
   },
   {
-    id: 3,
-    name: "Claude",
-    desc: "Anthropic 推出的AI助手，擅长长文档分析、深度推理和代码理解，上下文窗口200K。",
-    category: "内容创作",
-    tags: ["免费", "付费"],
-    tagTypes: ["free", "paid"],
-    icon: "C",
-    iconBg: "#d97757",
-    url: "https://claude.ai"
+    id: 3, name: "豆包", desc: "字节跳动出品，免费好用。日常文案、短视频脚本、翻译润色够用了，零门槛上手。",
+    category: "文案创作", scene: "短视频脚本 / 日常文案",
+    tags: ["免费", "国内可用", "平替ChatGPT"], tagTypes: ["free", "cn", "pingti"],
+    icon: "豆", iconBg: "#22c55e", url: "https://www.doubao.com"
   },
   {
-    id: 4,
-    name: "文心一言",
-    desc: "百度出品的中文大语言模型，深度理解中文语境，支持对话、写作、翻译、代码等场景。",
-    category: "内容创作",
-    tags: ["免费", "国内可用"],
-    tagTypes: ["free", "cn"],
-    icon: "文",
-    iconBg: "#4e6ef2",
-    url: "https://yiyan.baidu.com"
+    id: 4, name: "通义千问", desc: "阿里云旗下全能AI，文档解析一绝。上传PDF/Word直接分析总结，做调研省大把时间。",
+    category: "数据分析", scene: "文档分析 / 数据解读",
+    tags: ["免费", "国内可用"], tagTypes: ["free", "cn"],
+    icon: "通", iconBg: "#ff6a00", url: "https://tongyi.aliyun.com"
   },
   {
-    id: 5,
-    name: "通义千问",
-    desc: "阿里云推出的全能AI助手，支持多轮对话、文档解析、图片理解，与钉钉深度融合。",
-    category: "办公效率",
-    tags: ["免费", "国内可用"],
-    tagTypes: ["free", "cn"],
-    icon: "通",
-    iconBg: "#ff6a00",
-    url: "https://tongyi.aliyun.com"
+    id: 5, name: "Kimi", desc: "200万字超长上下文，论文、合同、访谈记录扔进去直接出摘要。自媒体做深度内容的神器。",
+    category: "数据分析", scene: "长文档总结 / 信息提取",
+    tags: ["免费", "国内可用"], tagTypes: ["free", "cn"],
+    icon: "K", iconBg: "#6366f1", url: "https://kimi.moonshot.cn"
   },
   {
-    id: 6,
-    name: "Canva AI",
-    desc: "Canva 内置的AI设计套件，支持AI生成图片、排版、文案，零基础也能做专业设计。",
-    category: "设计创意",
-    tags: ["免费", "付费"],
-    tagTypes: ["free", "paid"],
-    icon: "C",
-    iconBg: "#00c4cc",
-    url: "https://www.canva.com"
+    id: 6, name: "DeepSeek", desc: "国产推理强模型，逻辑严密。适合写观点文、行业分析，128K上下文免费使用。",
+    category: "文案创作", scene: "观点文 / 行业分析",
+    tags: ["免费", "国内可用"], tagTypes: ["free", "cn"],
+    icon: "D", iconBg: "#4f46e5", url: "https://chat.deepseek.com"
   },
   {
-    id: 7,
-    name: "Notion AI",
-    desc: "Notion 内置AI写作与知识管理助手，可在笔记中直接生成、总结、翻译、改写内容。",
-    category: "办公效率",
-    tags: ["付费"],
-    tagTypes: ["paid"],
-    icon: "N",
-    iconBg: "#000000",
-    url: "https://www.notion.so/product/ai"
+    id: 7, name: "Canva AI", desc: "零基础做专业设计。AI生成封面、海报、信息图，自媒体必备。内置海量模板。",
+    category: "图片设计", scene: "封面设计 / 海报 / 信息图",
+    tags: ["部分免费", "付费"], tagTypes: ["freemium", "paid"],
+    icon: "Ca", iconBg: "#00c4cc", url: "https://www.canva.com", featured: true
   },
   {
-    id: 8,
-    name: "Gamma",
-    desc: "AI驱动的演示文稿和文档生成工具，输入一句话即可自动生成精美的PPT或网页文档。",
-    category: "办公效率",
-    tags: ["免费", "付费"],
-    tagTypes: ["free", "paid"],
-    icon: "G",
-    iconBg: "#7b61ff",
-    url: "https://gamma.app"
+    id: 8, name: "稿定AI", desc: "国产设计神器，AI商品图、智能抠图、海报模板。做电商内容和带货图必备。",
+    category: "图片设计", scene: "电商图 / 海报 / 抠图",
+    tags: ["部分免费", "国内可用", "平替Canva"], tagTypes: ["freemium", "cn", "pingti"],
+    icon: "稿", iconBg: "#ff4757", url: "https://www.gaoding.com"
   },
   {
-    id: 9,
-    name: "剪映",
-    desc: "字节跳动旗下视频剪辑工具，内置AI自动字幕、AI配音、智能抠像等强大AI功能。",
-    category: "内容创作",
-    tags: ["免费", "国内可用"],
-    tagTypes: ["free", "cn"],
-    icon: "剪",
-    iconBg: "#000000",
-    url: "https://www.capcut.cn"
+    id: 9, name: "即梦AI", desc: "字节出品，文生图+图生视频。小红书封面、短视频素材一键生成，效果惊艳。",
+    category: "图片设计", scene: "封面生成 / 视频素材",
+    tags: ["部分免费", "国内可用"], tagTypes: ["freemium", "cn"],
+    icon: "即", iconBg: "#ec4899", url: "https://jimeng.jianying.com"
   },
   {
-    id: 10,
-    name: "Stable Diffusion",
-    desc: "开源AI图像生成模型，可本地部署运行，社区生态丰富，支持ControlNet等高级功能。",
-    category: "设计创意",
-    tags: ["免费", "付费"],
-    tagTypes: ["free", "paid"],
-    icon: "SD",
-    iconBg: "#a855f7",
-    url: "https://stability.ai"
+    id: 10, name: "Midjourney", desc: "AI绘画天花板。做高质量封面、配图、视觉素材首选，适合追求质感的博主。",
+    category: "图片设计", scene: "高质量配图 / 艺术封面",
+    tags: ["付费"], tagTypes: ["paid"],
+    icon: "M", iconBg: "#3b3b98", url: "https://www.midjourney.com"
   },
   {
-    id: 11,
-    name: "GitHub Copilot",
-    desc: "GitHub与OpenAI联合推出的AI编程助手，支持代码自动补全、函数生成、Bug修复。",
-    category: "开发工具",
-    tags: ["付费"],
-    tagTypes: ["paid"],
-    icon: "GC",
-    iconBg: "#2da44e",
-    url: "https://github.com/features/copilot",
-    featured: true
+    id: 11, name: "剪映", desc: "抖音官方剪辑工具。AI自动字幕、AI配音、智能抠像，一个人剪片效率翻10倍。",
+    category: "视频制作", scene: "剪辑 / 字幕 / 配音",
+    tags: ["免费", "国内可用"], tagTypes: ["free", "cn"],
+    icon: "剪", iconBg: "#000000", url: "https://www.capcut.cn", featured: true
   },
   {
-    id: 12,
-    name: "Cursor",
-    desc: "基于VS Code的AI编程编辑器，深度集成AI代码生成、对话式编程，大幅提升开发效率。",
-    category: "开发工具",
-    tags: ["免费", "付费"],
-    tagTypes: ["free", "paid"],
-    icon: "Cu",
-    iconBg: "#0ea5e9",
-    url: "https://cursor.sh"
+    id: 12, name: "Suno", desc: "AI音乐生成。输入风格+歌词自动生成BGM，告别版权焦虑，短视频配乐神器。",
+    category: "视频制作", scene: "背景音乐 / 配音配乐",
+    tags: ["部分免费", "付费"], tagTypes: ["freemium", "paid"],
+    icon: "S", iconBg: "#f97316", url: "https://suno.ai"
   },
   {
-    id: 13,
-    name: "Kimi",
-    desc: "月之暗面出品的国产AI助手，200万字超长上下文，擅长长文档阅读和信息提取。",
-    category: "学习辅助",
-    tags: ["免费", "国内可用"],
-    tagTypes: ["free", "cn"],
-    icon: "K",
-    iconBg: "#6366f1",
-    url: "https://kimi.moonshot.cn"
+    id: 13, name: "文心一言", desc: "百度出品，中文理解最强。写文章、做PPT大纲、分析中文素材，百度生态无缝衔接。",
+    category: "文案创作", scene: "中文写作 / PPT大纲",
+    tags: ["免费", "国内可用"], tagTypes: ["free", "cn"],
+    icon: "文", iconBg: "#4e6ef2", url: "https://yiyan.baidu.com"
   },
   {
-    id: 14,
-    name: "DeepSeek",
-    desc: "深度求索出品的高性能AI模型，推理能力突出，支持128K上下文，免费使用。",
-    category: "学习辅助",
-    tags: ["免费", "国内可用"],
-    tagTypes: ["free", "cn"],
-    icon: "D",
-    iconBg: "#4f46e5",
-    url: "https://chat.deepseek.com"
+    id: 14, name: "秘塔AI搜索", desc: "无广告AI搜索，自动生成思维导图。做选题调研、找素材、查资料的神器。",
+    category: "数据分析", scene: "选题调研 / 素材搜集",
+    tags: ["免费", "国内可用"], tagTypes: ["free", "cn"],
+    icon: "秘", iconBg: "#2563eb", url: "https://metaso.cn"
   },
   {
-    id: 15,
-    name: "Perplexity",
-    desc: "AI驱动的搜索引擎，可实时联网检索并给出带来源引用的答案，替代传统搜索。",
-    category: "学习辅助",
-    tags: ["免费", "付费"],
-    tagTypes: ["free", "paid"],
-    icon: "P",
-    iconBg: "#1f1f1f",
-    url: "https://www.perplexity.ai"
+    id: 15, name: "Perplexity", desc: "AI搜索引擎，带来源引用。做深度内容调研时替代百度，信息可靠度更高。",
+    category: "数据分析", scene: "深度调研 / 数据验证",
+    tags: ["部分免费", "付费"], tagTypes: ["freemium", "paid"],
+    icon: "P", iconBg: "#1f1f1f", url: "https://www.perplexity.ai"
   },
   {
-    id: 16,
-    name: "Vercel v0",
-    desc: "Vercel推出的AI前端生成工具，用自然语言描述即可生成React/Tailwind页面代码。",
-    category: "开发工具",
-    tags: ["免费", "付费"],
-    tagTypes: ["free", "paid"],
-    icon: "v0",
-    iconBg: "#171717",
-    url: "https://v0.dev"
+    id: 16, name: "Stable Diffusion", desc: "开源AI绘画，ControlNet精准控图。自媒体封面可控性强，免费本地部署。",
+    category: "图片设计", scene: "精准控图 / 批量出图",
+    tags: ["免费", "开源", "平替Midjourney"], tagTypes: ["free", "pingti"],
+    icon: "SD", iconBg: "#a855f7", url: "https://stability.ai"
   },
   {
-    id: 17,
-    name: "秘塔AI搜索",
-    desc: "国产AI搜索引擎，无广告直达答案，支持深度研究模式，自动生成思维导图。",
-    category: "学习辅助",
-    tags: ["免费", "国内可用"],
-    tagTypes: ["free", "cn"],
-    icon: "秘",
-    iconBg: "#2563eb",
-    url: "https://metaso.cn"
+    id: 17, name: "Gamma", desc: "AI生成PPT和网页文档。做课程、做报告、做媒体资料包，输入一句话出成品。",
+    category: "效率工具", scene: "PPT生成 / 文档美化",
+    tags: ["部分免费", "付费"], tagTypes: ["freemium", "paid"],
+    icon: "G", iconBg: "#7b61ff", url: "https://gamma.app"
   },
   {
-    id: 18,
-    name: "稿定AI",
-    desc: "国产AI设计工具，支持AI商品图、AI消除、智能抠图、AI海报等电商设计场景。",
-    category: "设计创意",
-    tags: ["免费", "国内可用"],
-    tagTypes: ["free", "cn"],
-    icon: "稿",
-    iconBg: "#ff4757",
-    url: "https://www.gaoding.com"
+    id: 18, name: "Notion AI", desc: "笔记+AI写作二合一。内容选题库、写作草稿、团队协作一站搞定，博主必备。",
+    category: "效率工具", scene: "内容管理 / 协作写作",
+    tags: ["付费"], tagTypes: ["paid"],
+    icon: "N", iconBg: "#000000", url: "https://www.notion.so/product/ai"
   },
   {
-    id: 19,
-    name: "Suno",
-    desc: "AI音乐生成工具，输入歌词和风格描述即可生成完整歌曲，支持多种音乐流派。",
-    category: "内容创作",
-    tags: ["免费", "付费"],
-    tagTypes: ["free", "paid"],
-    icon: "S",
-    iconBg: "#f97316",
-    url: "https://suno.ai"
+    id: 19, name: "飞书智能伙伴", desc: "飞书内置AI助手。文档、表格、会议中直接唤出AI，团队自媒体协作效率翻倍。",
+    category: "效率工具", scene: "团队协作 / 文档处理",
+    tags: ["部分免费", "国内可用"], tagTypes: ["freemium", "cn"],
+    icon: "飞", iconBg: "#3370ff", url: "https://www.feishu.cn"
   },
   {
-    id: 20,
-    name: "豆包",
-    desc: "字节跳动旗下AI助手，集成在抖音等产品中，支持对话、写作、翻译等日常场景。",
-    category: "办公效率",
-    tags: ["免费", "国内可用"],
-    tagTypes: ["free", "cn"],
-    icon: "豆",
-    iconBg: "#22c55e",
-    url: "https://www.doubao.com"
+    id: 20, name: "天工AI", desc: "全能AI搜索+写作。一站式解决选题调研、素材搜集、文案生成，自媒体工作流核心。",
+    category: "文案创作", scene: "选题 / 素材 / 写作",
+    tags: ["免费", "国内可用"], tagTypes: ["free", "cn"],
+    icon: "天", iconBg: "#8b5cf6", url: "https://www.tiangong.cn"
   },
   {
-    id: 21,
-    name: "Replit Ghostwriter",
-    desc: "Replit在线IDE内置的AI编程助手，支持代码生成、解释、调试，零配置在线开发。",
-    category: "开发工具",
-    tags: ["付费"],
-    tagTypes: ["paid"],
-    icon: "R",
-    iconBg: "#f26207",
-    url: "https://replit.com"
+    id: 21, name: "Runway", desc: "AI视频生成与编辑。文字生成视频、视频风格转换，适合做创意短视频素材。",
+    category: "视频制作", scene: "AI视频生成 / 特效",
+    tags: ["部分免费", "付费"], tagTypes: ["freemium", "paid"],
+    icon: "R", iconBg: "#000000", url: "https://runwayml.com"
   },
   {
-    id: 22,
-    name: "即梦AI",
-    desc: "字节跳动出品的AI图像和视频生成工具，支持文生图、图生视频，效果惊艳。",
-    category: "设计创意",
-    tags: ["免费", "国内可用"],
-    tagTypes: ["free", "cn"],
-    icon: "即",
-    iconBg: "#ec4899",
-    url: "https://jimeng.jianying.com"
+    id: 22, name: "Remove.bg", desc: "一键智能抠图，5秒出图。做封面、做素材、做商品图，省掉PS的繁琐操作。",
+    category: "图片设计", scene: "抠图 / 去背景",
+    tags: ["部分免费", "付费"], tagTypes: ["freemium", "paid"],
+    icon: "rb", iconBg: "#e74c3c", url: "https://www.remove.bg"
   },
   {
-    id: 23,
-    name: "天工AI",
-    desc: "昆仑万维推出的全能AI搜索助手，支持AI对话、AI搜索、AI文档分析多种模式。",
-    category: "学习辅助",
-    tags: ["免费", "国内可用"],
-    tagTypes: ["free", "cn"],
-    icon: "天",
-    iconBg: "#8b5cf6",
-    url: "https://www.tiangong.cn"
+    id: 23, name: "GitHub Copilot", desc: "AI编程助手。技术博主的效率神器，代码示例、技术文章案例自动生成。",
+    category: "效率工具", scene: "技术写作 / 代码",
+    tags: ["付费"], tagTypes: ["paid"],
+    icon: "GC", iconBg: "#2da44e", url: "https://github.com/features/copilot"
   },
   {
-    id: 24,
-    name: "飞书智能伙伴",
-    desc: "飞书内置的AI办公助手，可在文档、表格、会议中直接调用AI能力，提升协作效率。",
-    category: "办公效率",
-    tags: ["付费", "国内可用"],
-    tagTypes: ["paid", "cn"],
-    icon: "飞",
-    iconBg: "#3370ff",
-    url: "https://www.feishu.cn"
+    id: 24, name: "Cursor", desc: "AI编程编辑器，对话式写代码。技术自媒体做教程、写Demo的效率神器。",
+    category: "效率工具", scene: "编程 / 技术教程",
+    tags: ["部分免费", "付费"], tagTypes: ["freemium", "paid"],
+    icon: "Cu", iconBg: "#0ea5e9", url: "https://cursor.sh"
   }
 ];
 
-// === STATE ===
 let activeCategory = "all";
 let searchQuery = "";
+let activeFilter = "";
 
-// === RENDER ===
 function renderTools() {
   const grid = document.getElementById("toolsGrid");
   const countEl = document.getElementById("toolCount");
-
   let filtered = tools;
 
-  if (activeCategory !== "all") {
-    filtered = filtered.filter(t => t.category === activeCategory);
-  }
-
+  if (activeCategory !== "all") filtered = filtered.filter(t => t.category === activeCategory);
+  if (activeFilter === "free") filtered = filtered.filter(t => t.tagTypes.includes("free"));
+  if (activeFilter === "pingti") filtered = filtered.filter(t => t.tagTypes.includes("pingti"));
   if (searchQuery.trim()) {
     const q = searchQuery.trim().toLowerCase();
-    filtered = filtered.filter(t =>
-      t.name.toLowerCase().includes(q) ||
-      t.desc.toLowerCase().includes(q) ||
-      t.category.toLowerCase().includes(q) ||
-      t.tags.some(tag => tag.toLowerCase().includes(q))
-    );
+    filtered = filtered.filter(t => t.name.toLowerCase().includes(q) || t.desc.toLowerCase().includes(q) || t.category.includes(q) || t.scene.includes(q) || t.tags.some(tag => tag.includes(q)));
   }
-
   countEl.textContent = `共 ${filtered.length} 个工具`;
-
   if (filtered.length === 0) {
-    grid.innerHTML = `
-      <div class="no-results">
-        <div class="no-results-icon">&#128269;</div>
-        <p>没有找到匹配的工具<br><span style="font-size:0.85rem;color:oklch(0.45 0.01 60)">试试换个关键词，或者浏览全部分类</span></p>
-      </div>
-    `;
+    grid.innerHTML = `<div class="no-results"><div class="no-results-icon">&#128269;</div><p>没有匹配的工具<br><span style="font-size:0.85rem;color:oklch(0.45 0.01 60)">换个关键词试试，或用分类浏览</span></p></div>`;
     return;
   }
-
   grid.innerHTML = filtered.map(t => {
-    const tagsHTML = t.tags.map((tag, i) => {
-      const cls = t.tagTypes[i] || "";
-      return `<span class="tag ${cls}">${tag}</span>`;
-    }).join("");
-
-    const featuredClass = t.featured ? " featured" : "";
-
-    return `
-      <div class="tool-card${featuredClass}">
-        <div class="tool-card-header">
-          <div class="tool-icon" style="background:${t.iconBg};color:#fff">${t.icon}</div>
-        </div>
-        <div class="tool-name">${t.name}</div>
-        <div class="tool-desc">${t.desc}</div>
-        <div class="tool-tags">${tagsHTML}</div>
-        <a href="${t.url}" target="_blank" rel="noopener" class="tool-link">
-          访问工具
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-      </div>
-    `;
+    const tagsHTML = t.tags.map((tag, i) => `<span class="tag ${t.tagTypes[i] || ''}">${tag}</span>`).join("");
+    const fc = t.featured ? " featured" : "";
+    return `<div class="tool-card${fc}">
+      <div class="tool-card-header"><div class="tool-icon" style="background:${t.iconBg};color:#fff">${t.icon}</div></div>
+      <div class="tool-name">${t.name}</div>
+      <div class="tool-desc">${t.desc}</div>
+      <div class="tool-scene">🎯 ${t.scene}</div>
+      <div class="tool-tags">${tagsHTML}</div>
+      <a href="${t.url}" target="_blank" rel="noopener" class="tool-link">访问工具<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>`;
   }).join("");
 }
 
-// === EVENT LISTENERS ===
-document.getElementById("searchInput").addEventListener("input", function(e) {
-  searchQuery = e.target.value;
-  renderTools();
-});
-
+document.getElementById("searchInput").addEventListener("input", function(e) { searchQuery = e.target.value; renderTools(); });
 document.getElementById("categories").addEventListener("click", function(e) {
   if (e.target.classList.contains("cat-btn")) {
     document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
@@ -895,30 +490,33 @@ document.getElementById("categories").addEventListener("click", function(e) {
     renderTools();
   }
 });
-
-// Footer category links
+document.querySelector(".feature-tags").addEventListener("click", function(e) {
+  if (e.target.classList.contains("ftag")) {
+    const filter = e.target.dataset.filter;
+    if (activeFilter === filter) { activeFilter = ""; e.target.classList.remove("active"); }
+    else {
+      document.querySelectorAll(".ftag").forEach(f => f.classList.remove("active"));
+      e.target.classList.add("active");
+      activeFilter = filter;
+    }
+    renderTools();
+  }
+});
 document.querySelectorAll("[data-nav-cat]").forEach(link => {
   link.addEventListener("click", function(e) {
     e.preventDefault();
     const cat = this.dataset.navCat;
-    document.querySelectorAll(".cat-btn").forEach(b => {
-      b.classList.toggle("active", b.dataset.cat === cat);
-    });
-    activeCategory = cat;
-    renderTools();
+    document.querySelectorAll(".cat-btn").forEach(b => b.classList.toggle("active", b.dataset.cat === cat));
+    activeCategory = cat; renderTools();
     document.getElementById("tools").scrollIntoView({ behavior: "smooth" });
   });
 });
 
-// === INIT ===
 renderTools();
 
-// === 兜底：确保 tool-link 点击生效（移动端兼容） ===
 document.getElementById("toolsGrid").addEventListener("click", function(e) {
   const link = e.target.closest(".tool-link");
-  if (link && link.href) {
-    window.open(link.href, "_blank", "noopener");
-  }
+  if (link && link.href) window.open(link.href, "_blank", "noopener");
 });
 </script>
 </body>
